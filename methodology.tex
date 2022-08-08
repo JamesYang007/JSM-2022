@@ -260,7 +260,7 @@
     \begin{align*}
         dP_\theta\pr{x} = \exp\br{T\pr{x}^\top \theta - A\pr{\theta}} d\mu\pr{x}
     \end{align*}
-    \item This assumption can be relaxed to densities with log-concave densities.
+    \item This assumption can be relaxed to log-concave densities.
     \item Treat a design as a black-box.
     \begin{itemize}
         \item Adaptive data collection is OK!\@
@@ -286,11 +286,13 @@
     \item Let $F(x)$ denote the indicator that the test rejects with data $x$.
     \item \textbf{0th Order}: use $\frac{1}{n} \sum\limits_{i=1}^n F(X_i)$ and upper bound with Clopper-Pearson to control $f(\theta_0)$.
     \item \textbf{1st Order}: use $\widehat{\nabla f}(\theta_0) := \frac{1}{n} \sum\limits_{i=1}^n F(X_i) (T(X_i) - \nabla A(\theta_0))$
-        and upper bound $\nabla f\pr{\theta_0}^\top v$ with Cantelli's Inequality to control $\nabla f\pr{\theta_0}^\top v$.
-        Since the null is a polytope, the worst case can be shown to occur at one of the corners of $\Theta_0-\theta_0$.
+        and upper bound with Cantelli's Inequality to control $\nabla f\pr{\theta_0}^\top v$.
+        \begin{itemize}
+            \item Polytope null $\implies$ worst case at one of the corners of $\Theta_0-\theta_0$.
+        \end{itemize}
     \item \textbf{2nd Order}: use $U(v) := \frac{1}{2} \sup\limits_{\theta \in \Theta_0} v^\top \var_\theta\br{T(X)} v$ 
         to dominate the remainder term.
-    \item Combine these estimates and their bounds to get a total upper bound on $\Theta_0$.
+    \item Combine $\implies$ total upper bound on $\Theta_0$.
 \end{itemize}
 \end{frame}
 
@@ -304,7 +306,7 @@
 
 \begin{frame}{Possible Workflow Issue?}
 \begin{itemize}
-    \item Declaring victory if $\hat{U} \leq \alpha$ may still be problematic.
+    \item Declaring victory if $\hat{U}(\theta) \leq \alpha$ may still be problematic.
     \item Due to randomness in $\hat{U}$, this decision rule does not lead to any meaningful statement about the true Type I Error being under $\alpha$.
 \end{itemize}
 \end{frame}
@@ -319,7 +321,7 @@
             \EEE\br{f_{\hat{\lambda}}(\theta)} 
             &\leq \alpha + \delta
         \end{align*}
-    \item Interpretation: we give both a high-probability guarantee for the Type I Error at the selected threshold \textbf{and} an overall guarantee for the Type I Error of this overall selection procedure.
+    \item Interpretation: both a high-probability guarantee for the Type I Error at the selected threshold \textbf{and} an overall guarantee for the Type I Error of this selection procedure.
     \item Guarantees, a priori, that our procedure controls Type I Error at the 2.5\% level.
 \end{itemize}
 \end{frame}
