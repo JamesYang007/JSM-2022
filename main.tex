@@ -1,0 +1,40 @@
+\documentclass[notes]{beamer}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+\usepackage{booktabs}
+
+%Information to be included in the title page:
+\title{Tight, Rigorous, and Automated Type I Error Proofs with Simulation}
+\author[shortname]{Michael Sklar \inst{1} \and James Yang \inst{2}}
+\institute[shortinst]{\inst{1} Confirm Solutions CEO \and %
+                      \inst{2} Confirm Solutions; Stanford University}
+\date{\today}
+
+\newcommand{\PPP}{\mathbb{P}}
+\newcommand{\br}[1]{\left[#1\right]}
+\newcommand{\normal}{\mathcal{N}}
+\newcommand{\pr}[1]{\left( #1 \right)}
+\newcommand{\set}[1]{\{#1\}}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\expit}{expit}
+\DeclareMathOperator{\logit}{logit}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\input{introduction}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+\input{motivation}
+\input{methodology}
+\input{computation}
+\input{closing}
+
+\end{document}
