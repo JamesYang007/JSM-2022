@@ -11,8 +11,8 @@
     {Design Type} & {Number of Sims} & {Number of Null Points} & {Total Sims (billion)} \\ \midrule
     Thompson & 100,000 & 16,384 & 1.6 \\
     Exponential Hazard & 100,000 & 16,384 & 1.6 \\
-    Binomial Selection & 100,000 & 262,144 & 25 \\
-    Berry et al. & 10,000 & 5,308,416 & 100 \\ \bottomrule
+    Binomial Selection & 100,000 & 262,144 & 26 \\
+    Berry et al. & 10,000 & 5,308,416 & 530 \\ \bottomrule
 \end{tabular}
 }
 \end{frame}
@@ -42,13 +42,13 @@
 \end{itemize}
 
 \resizebox{\linewidth}{!}{% Resize table to fit within \linewidth horizontally
-\begin{tabular}{ccccc} \toprule
-    {Design Type} & {Number of Sims} & {Number of Null Points} & {Hardware} & {Time (m)} \\ \midrule
-    Exponential Hazard & 100,000 & 16,384  & CPU & 1.57 \\
-    Binomial Selection & 100,000 & 262,144 & CPU & 2.37 \\
-    Thompson & 100,000 & 16,384 & CPU & 4 \\
-    Berry et al. & 10,000 & 5,308,416 & CPU & 150 \\
-    Berry et al. & 10,000 & 5,308,416 & GPU & 1.16 \\ \bottomrule
+\begin{tabular}{cccccc} \toprule
+    {Design Type} & {Number of Sims} & {Number of Null Points} & {Total Sims (billion)} & {Hardware} & {Time (m)} \\ \midrule
+    Exponential Hazard & 100,000 & 16,384  & 1.6 & CPU & 1.57 \\
+    Binomial Selection & 100,000 & 262,144 & 1.6 & CPU & 2.37 \\
+    Thompson & 100,000 & 16,384 & 26 & CPU & 4 \\
+    Berry et al. & 10,000 & 5,308,416 & 530 & CPU & 150 \\
+    Berry et al. & 10,000 & 5,308,416 & 530 & GPU & 1.16 \\ \bottomrule
 \end{tabular}
 }
 \end{frame}
