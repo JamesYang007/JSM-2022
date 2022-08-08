@@ -1,34 +1,6 @@
 \section{Methodology}
 \frame{\tableofcontents[currentsection]}
 
-\subsection{Sketch of the Methodology}
-
-% Sketch of the methodology
-\begin{frame}{Methodology: High-Level Sketch}
-\begin{itemize}
-    \item Key steps:
-    \begin{enumerate}
-    \item Simulate design on a finite number of points
-    in the null hypothesis space.
-    \item Construct upper bound estimates of the true Type I Error
-    \emph{on a compact subset of the null space}.
-    \item Prove that such estimates are above the true Type I Error
-    with high confidence, pointwise \emph{on the compact subset}.
-    \end{enumerate}
-    
-    \item Idea: if the upper bound estimates are under level $\alpha$,
-    the Type I Error is highly likely to be under $\alpha$ as well.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Methodology: High-Level Sketch}
-\begin{itemize}
-    \item Why do we assume compact subset? 
-    \item In practice, it is sufficient to study compact subsets.
-    \item Theoretical arguments can often show that Type I Error is small in far regions.
-\end{itemize}
-\end{frame}
-
 %% Simple Motivating Example
 \subsection{Simple Example: One-Sided Z-Test}
 
@@ -235,6 +207,32 @@
 
 \subsection{Theoretical Results}
 
+% Sketch of the methodology
+\begin{frame}{High-Level Sketch}
+\begin{itemize}
+    \item Key steps:
+    \begin{enumerate}
+    \item Simulate design on a finite number of points
+    in the null hypothesis space.
+    \item Construct upper bound estimates of the true Type I Error
+    \emph{on a compact subset of the null space}.
+    \item Prove that such estimates are above the true Type I Error
+    with high confidence, pointwise \emph{on the compact subset}.
+    \end{enumerate}
+    
+    \item Idea: if the upper bound estimates are under level $\alpha$,
+    the Type I Error is highly likely to be under $\alpha$ as well.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{High-Level Sketch}
+\begin{itemize}
+    \item Why do we assume compact subset? 
+    \item In practice, it is sufficient to study compact subsets.
+    \item Theoretical arguments can often show that Type I Error is small in far regions.
+\end{itemize}
+\end{frame}
+
 % Give a mathematical statement of the sketch
 \begin{frame}{Less High-Level Sketch}
 \begin{itemize}
@@ -249,7 +247,9 @@
     \item Construct a process, $\theta \mapsto \hat{U}(\theta)$, 
     that depends on the simulated data.
     \item Prove that $\PPP\br{\hat{U}(\theta) \geq f(\theta)} \geq 1-\delta$ for all $\theta \in \Theta_0$.
+    
 \end{enumerate}
+
 \end{itemize}
 \end{frame}
 
@@ -286,7 +286,7 @@
     \item Let $F(x)$ denote the indicator that the test rejects with data $x$.
     \item \textbf{0th Order}: use $\frac{1}{n} \sum\limits_{i=1}^n F(X_i)$ and upper bound with Clopper-Pearson to control $f(\theta_0)$.
     \item \textbf{1st Order}: use $\widehat{\nabla f}(\theta_0) := \frac{1}{n} \sum\limits_{i=1}^n F(X_i) (T(X_i) - \nabla A(\theta_0))$
-        and upper bound $\nabla f\pr{\theta_0}^\top v$ with Cantelli's Inequality to control $\nabla f\pr{\theta_0}$.
+        and upper bound $\nabla f\pr{\theta_0}^\top v$ with Cantelli's Inequality to control $\nabla f\pr{\theta_0}^\top v$.
         Since the null is a polytope, the worst case can be shown to occur at one of the corners of $\Theta_0-\theta_0$.
     \item \textbf{2nd Order}: use $U(v) := \frac{1}{2} \sup\limits_{\theta \in \Theta_0} v^\top \var_\theta\br{T(X)} v$ 
         to dominate the remainder term.
@@ -302,7 +302,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Possible Workflow Issue}
+\begin{frame}{Possible Workflow Issue?}
 \begin{itemize}
     \item Declaring victory if $\hat{U} \leq \alpha$ may still be problematic.
     \item Due to randomness in $\hat{U}$, this decision rule does not lead to any meaningful statement about the true Type I Error being under $\alpha$.
@@ -315,17 +315,19 @@
     \item Key idea: find the critical value, $\hat{\lambda}$, where $\hat{U}(\theta)$ first hits level $\alpha$ exactly for some $\theta \in \Theta_0$.
     \item Then, letting $f_\lambda(\theta)$ denote the true Type I Error at $\theta$ with rejection threshold $\lambda$, we have that
         \begin{align*}
-            \PPP\br{f_{\hat{\lambda}}(\theta) \leq \alpha} \geq 1-\delta
+            \PPP\br{f_{\hat{\lambda}}(\theta) \leq \alpha} &\geq 1-\delta \\
+            \EEE\br{f_{\hat{\lambda}}(\theta)} 
+            &\leq \alpha + \delta
         \end{align*}
-    \item Interpretation: if a trial were run with independent data from the simulated data used to compute $\hat{\lambda}$,
-        the true Type I Error will be under $\alpha$ with high probability. 
+    \item Interpretation: we give both a high-probability guarantee for the Type I Error at the selected threshold \textbf{and} an overall guarantee for the Type I Error of this overall selection procedure.
+    \item Guarantees, a priori, that our procedure controls Type I Error at the 2.5\% level.
 \end{itemize}
 \end{frame}
 
 \subsection{Example Designs}
 
 % Thompson Sampling
-\begin{frame}{Thompson Sampling}
+\begin{frame}{Example: Thompson Sampling}
 \begin{itemize}
     \item Two-arm trial.
     \item Outcomes $Y_{ij} \sim Bernoulli(\theta_j)$ ($i=1,\ldots,100$).
@@ -343,9 +345,9 @@
 \end{frame}
 
 % Berry Replication
-\begin{frame}{Berry et al (2013)}
+\begin{frame}{Example: Bayesian Basket Trial from Berry et al. (2013)}
 \begin{itemize}
-    \item Basket design:
+    \item Design:
         \begin{align*}
             Y_j &\sim Binom(n_j, p_j) \quad j=1,\ldots, d \\
             p_j &= \expit(\theta_j + \logit(q_j)) \\
@@ -358,7 +360,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Berry Basket Trial}
+\begin{frame}{Berry et al. (2013)}
 \centering
 \includegraphics[width=\textwidth]{figures/berry.png}
 \end{frame}
